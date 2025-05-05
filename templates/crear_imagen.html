@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Crear ImagenCloud{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style>
+      body {
+          min-height: 75rem;
+          padding-top: 4.5rem;
+      }
+  </style>
+{% endblock %}
+{% block content %}
+    <h1>Nueva ImagenCloud</h1>
+
+    <form method="POST" action="{{ url_for('add_imagen') }}">
+        <div class="mb-3">
+          <label for="usuario" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="usuario" name="usuario">
+        </div>
+        <div class="mb-3">
+          <label for="imagen" class="form-label">Imagen</label>
+          <input type="text" class="form-control" id="imagen" name="imagen">
+        </div>
+        <div class="mb-3">
+            <label for="tipo" class="form-label">Tipo</label>
+            <input type="text" class="form-control" id="tipo" name="tipo">
+        </div>
+        <div class="mb-3">
+            <label for="pixelesR" class="form-label">R</label>
+            <input type="text" class="form-control" id="pixelesR" name="pixelesR">
+        </div>
+        <div class="mb-3">
+            <label for="pixelesG" class="form-label">G</label>
+            <input type="text" class="form-control" id="pixelesG" name="pixelesG">
+        </div>
+        <div class="mb-3">
+            <label for="pixelesB" class="form-label">B</label>
+            <input type="text" class="form-control" id="pixelesB" name="pixelesB">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="cancel" class="btn btn-primary">Cancel</button>
+    </form>
+{% endblock %}
+    

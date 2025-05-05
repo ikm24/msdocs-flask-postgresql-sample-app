@@ -41,32 +41,46 @@
   </style>
 {% endblock %}
 {% block content %}
-      <h1>Restaurants</h1>
+      <h1>Historial de Imagenes</h1>
 
       {% if True %}
           <table class="table">
               <thead>
                   <tr>
-                      <th>Name</th>
-                      <th>Rating</th>
-                      <th class="text-end">Details</th>
+                      <th>Usuario</th>
+                      <th>Imagen</th>
+                      <th>Tipo</th>
+                      <th>R</th>
+                      <th>G</th>
+                      <th>B</th>
+                      <th>Fecha</th>
+                      <th class="text-end">Borrado</th>
                   </tr>
               </thead>
               <tbody>
-                  {% for restaurant in restaurants %}
+                  {% for imagen in imagenes %}
                       <tr>
-                          <td>{{ restaurant.name }}</td>
-                          <td>{% include "star_rating.html" %}</td>
-                          <td class="text-end"><a href="{{ url_for('details', id=restaurant.id) }}" class="btn btn-sm btn-primary">Details</a></td>
+                          <td>{{ imagen.usuario }}</td>
+                          <td>{{ imagen.imagen }}</td>
+                          <td>{{ imagen.tipo }}</td>
+                          <td>{{ imagen.pixelesR }}</td>
+                          <td>{{ imagen.pixelesG }}</td>
+                          <td>{{ imagen.pixelesB }}</td>
+                          <td>{{ imagen.fecha }}</td>
+                          <td class="text-end">
+                            <form action="{{ url_for('remove_imagen', id=imagen.id) }}" method="POST" style="display: inline;">
+                              <button type="submit" class="btn btn-sm btn-secondary">Borrar</button>
+                            </form>
+                          </td>
                       </tr>
                   {% endfor %}
               </tbody>
           </table>
       {% else %}
-          <p>No restaurants exist.  Select Add new restaurant to add one.</p>
+          <p>No existen imagenes registradas.</p>
       {% endif %}
 
       <div class="d-flex justify-content-end">
-              <a href="{{ url_for('create_restaurant') }}" class="btn btn-success px-4 gap-3">Add new restaurant</a>
+              <a href="{{ url_for('crear_imagen') }}" class="btn btn-success px-4 gap-3">Nueva ImagenCloud</a>
       </div>
 {% endblock %}
