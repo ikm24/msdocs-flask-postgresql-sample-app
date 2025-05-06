@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from flask import Flask, redirect, render_template, request, send_from_directory, url_for
 from flask_migrate import Migrate
@@ -68,7 +68,7 @@ def add_imagen():
         imagenCloud.pixelesR = int(pixelesR)
         imagenCloud.pixelesG = int(pixelesG)
         imagenCloud.pixelesB = int(pixelesB)
-        imagenCloud.fecha = datetime.now()
+        imagenCloud.fecha = datetime.now() + timedelta(hours=2)
         db.session.add(imagenCloud)
         db.session.commit()
 
