@@ -37,7 +37,7 @@ from models import ImagenCloud
 @app.route('/', methods=['GET'])
 def index():
     print('Solicitud para la página principal')
-    imagenes = ImagenCloud.query.all()
+    imagenes = ImagenCloud.query.order_by(ImagenCloud.fecha.desc()).all()
     return render_template('index.html', imagenes=imagenes)
 
 @app.route('/create', methods=['GET'])

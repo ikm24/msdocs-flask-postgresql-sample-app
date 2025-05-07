@@ -38,7 +38,43 @@
             <input type="text" class="form-control" id="pixelesB" name="pixelesB">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="cancel" class="btn btn-primary">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="cancelarFormulario(event)">Cancel</button>
     </form>
+
+    <script>
+        function validarFormulario(event) {
+          event.preventDefault();
+      
+          const usuario = document.getElementById('usuario').value.trim();
+          const imagen = document.getElementById('imagen').value.trim();
+          const tipo = document.getElementById('tipo').value.trim();
+          const r = document.getElementById('pixelesR').value.trim();
+          const g = document.getElementById('pixelesG').value.trim();
+          const b = document.getElementById('pixelesB').value.trim();
+      
+          if (!usuario || !imagen || !tipo || !r || !g || !b) {
+            alert("Todos los campos son obligatorios.");
+            return;
+          }
+      
+          if (![r, g, b].every(val => /^\d+$/.test(val))) {
+            alert("R, G y B deben ser valores enteros.");
+            return;
+          }
+      
+          event.target.submit();
+        }
+      
+        function cancelarFormulario(event) {
+          event.preventDefault();
+          window.location.href = "{{ url_for('index') }}";
+        }
+      
+        // Asociar la función de validación al form después de que cargue la página
+        window.addEventListener('DOMContentLoaded', () => {
+          const form = document.querySelector('form');
+          form.addEventListener('submit', validarFormulario);
+        });
+    </script>
 {% endblock %}
     
